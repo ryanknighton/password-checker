@@ -11,13 +11,34 @@
 
 </head>
 
-<body>
+<body onload="populateSelect()">
   <h1>Check My Password</h1>
 
-  <input type="password" id="pass" placeholder="Password" onkeyup="passwordChanged()">
+  <input type="password" id="input" placeholder="Password" onkeyup="passwordChanged()">
 
   <hr>
   <h1>Generate a Password</h1>
+  <input type="text" id="output" value="New Password">
+  <p>Length of Password:</p>
+  <select id="length">
+  </select>
+  <br>
+  <p>Excluded Characters:</p>
+  <input type="text" id="excluded" placeholder="Excluded Characters">
+  <br>
+  <input type="checkbox" id="numbers">
+  <label for="excluded">Include numbers</label>
+  <br>
+  <input type="checkbox" id="symbols">
+  <label for="symbols">Include symbols</label>
+  <br>
+  <input type="checkbox" id="uppers">
+  <label for="letters">Include uppercase letters</label>
+  <br>
+  <input type="checkbox" id="lowers" checked>
+  <label for="letters">Include lowercase letters</label>
+  <br>
+  <button type="button" id="generateBtn" onclick="generate()">Generate</button>
 
 </body>
 </html>
