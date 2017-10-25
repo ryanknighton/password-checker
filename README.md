@@ -1,6 +1,9 @@
 # password-checker
 CSE 4471 Group Project
 
+## TODO:
+* handle minimum required symbols/caps etc.
+
 ### Definite Features:
 * Suggests passwords of varying length
 * Allows user to exclude characters
