@@ -105,3 +105,31 @@ function displayPass(pass) {
   let dispBox = document.getElementById('output');
   dispBox.value = pass;
 }
+
+function randomWord() {
+  // 100 random words to choose from
+  var words = ["toys","friction","gleaming","glue","spiky","attract","daily","own","ski","unit","trade","bee","lovely","skirt",
+               "wandering","queue","drab","drawer","vegetable","squeamish","axiomatic","painful","needy","shock","battle","clip",
+               "better","juice","exuberant","equable","flashy","skinny","glorious","decisive","nation","historical","magenta",
+               "belief","bake","quiver","worried","rustic","laughable","push","flock","ablaze","impossible","nice","sink","pipe",
+               "spotty","jumbled","jump","perfect","match","internal","psychedelic","mushy","shelter","jaded","sky","rhyme","enjoy",
+               "receptive","thunder","naive","null","elite","fragile","balance","walk","doubt","future","knock","delirious","learn",
+               "exciting","acceptable","lying","important","aberrant","cheer","order","breakable","lettuce","division","sneeze",
+               "moaning","paste","notebook","versed","same","swanky","wink","heartbreaking","puzzled","business","loving","private",
+               "field"];
+  
+  var num = document.getElementById('randNum');
+  var paragraph = document.createElement("p");
+  var array = [];
+  
+  while (array.length < num) {
+    var randNum = Math.floor(Math.random() * num);
+    if (array.indexOf(randNum) > -1)
+      continue;
+    var temp = document.createTextNode(words[randNum]);
+    paragraph.appendChild(t);
+    array(array.length) = randNum;
+  }
+  
+  document.getElementById('randWord').appendChild(paragraph);
+}
