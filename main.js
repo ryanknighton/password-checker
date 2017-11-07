@@ -118,7 +118,7 @@ function randomWord() {
                "moaning","paste","notebook","versed","same","swanky","wink","heartbreaking","puzzled","business","loving","private",
                "field"];
   
-  var num = document.getElementById('randomwords');
+  var num = document.getElementById('randNum');
   var paragraph = document.createElement("p");
   var array = [];
   
@@ -131,5 +131,5 @@ function randomWord() {
     array(array.length) = randNum;
   }
   
-  document.getElementById('randWord').appendChild(paragraph);
+  document.getElementById('randomword').appendChild(paragraph);
 }
