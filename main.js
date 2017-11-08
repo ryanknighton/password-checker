@@ -27,6 +27,7 @@ function populateSelect() {
 
   select.appendChild(weak);
   select.appendChild(strong);
+  select.value = 16;
 }
 
 function passwordChanged() {
@@ -37,35 +38,44 @@ function passwordChanged() {
 
 function generate() {
   let validSet = new Array();
+  let pass = new Array();
+
+  let excluded = excludedChars();
+  fltrNumbers = numbers.filter(x => !excluded.has(x));
+  fltrSymbols = symbols.filter(x => !excluded.has(x));
+  fltrAlphabetUpper = alphabetUpper.filter(x => !excluded.has(x));
+  fltrAlphabetLower = alphabetLower.filter(x => !excluded.has(x));
+  console.log(excluded);
+  console.log(fltrNumbers, fltrSymbols, fltrAlphabetUpper, fltrAlphabetLower);
 
   if (includeNum()) {
-    validSet = validSet.concat(numbers);
+    pass.push(fltrNumbers[Math.floor(Math.random()*fltrNumbers.length)])
+    validSet = validSet.concat(fltrNumbers);
   }
 
   if (includeSym()) {
-    validSet = validSet.concat(symbols);
+    pass.push(fltrSymbols[Math.floor(Math.random()*fltrSymbols.length)])
+    validSet = validSet.concat(fltrSymbols);
   }
 
   if (includeUpper()) {
-    validSet = validSet.concat(alphabetUpper);
+    pass.push(fltrAlphabetUpper[Math.floor(Math.random()*fltrAlphabetUpper.length)])
+    validSet = validSet.concat(fltrAlphabetUpper);
   }
 
   if (includeLower()) {
-    validSet = validSet.concat(alphabetLower);
+    pass.push(fltrAlphabetLower[Math.floor(Math.random()*fltrAlphabetLower.length)])
+    validSet = validSet.concat(fltrAlphabetLower);
   }
 
-  let excluded = excludedChars();
-  validSet = validSet.filter(x => excluded.indexOf(x) < 0 );
-
-  let pass = new Array();
-
   let length = getLength();
-  for (let i = 0; i < length; i++) {
+  for (let i = pass.length; i < length; i++) {
     let item = validSet[Math.floor(Math.random()*validSet.length)];
 
     pass.push(item);
   }
 
+  shuffle(pass);
   displayPass(pass.join(''));
 }
 
@@ -86,7 +96,8 @@ function includeLower() {
 }
 
 function excludedChars() {
-  return document.getElementById('excluded').value.split();
+  let excluded = new Set(document.getElementById('excluded').value.split(''));
+  return excluded;
 }
 
 function getLength() {
@@ -96,4 +107,20 @@ function getLength() {
 function displayPass(pass) {
   let dispBox = document.getElementById('output');
   dispBox.value = pass;
+}
+
+// Fisher-Yates Shuffle
+function shuffle(array) {
+    let i = array.length;
+
+    while (i > 0) {
+        let rand = Math.floor(Math.random() * i);
+        i--;
+
+        let temp = array[i];
+        array[i] = array[rand];
+        array[rand] = temp;
+    }
+
+    return array;
 }
