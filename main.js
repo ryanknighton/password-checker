@@ -118,17 +118,17 @@ function randomWord() {
                "moaning","paste","notebook","versed","same","swanky","wink","heartbreaking","puzzled","business","loving","private",
                "field"];
   
-  var num = document.getElementById('randNum');
+  var num = document.getElementById('randNum').value;
   var paragraph = document.createElement("p");
   var array = [];
   
   while (array.length < num) {
     var randNum = Math.floor(Math.random() * num);
-    if (array.indexOf(randNum) > -1)
-      continue;
-    var temp = document.createTextNode(words[randNum]);
-    paragraph.appendChild(temp);
-    array(array.length) = randNum;
+    if (array.indexOf(randNum) > -1) {
+      var temp = document.createTextNode(words[randNum]);
+      paragraph.appendChild(temp);
+      array(array.length) = randNum;
+    }
   }
   
   document.getElementById('randomword').appendChild(paragraph);
