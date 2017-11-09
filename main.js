@@ -32,8 +32,7 @@ function populateSelect() {
 
 function passwordChanged() {
   pw = document.getElementById('input').value;
-  console.log(pw);
-  return pw;
+  check(pw);
 }
 
 function generate() {
@@ -111,16 +110,20 @@ function displayPass(pass) {
 
 // Fisher-Yates Shuffle
 function shuffle(array) {
-    let i = array.length;
+  let i = array.length;
 
-    while (i > 0) {
-        let rand = Math.floor(Math.random() * i);
-        i--;
+  while (i > 0) {
+    let rand = Math.floor(Math.random() * i);
+    i--;
 
-        let temp = array[i];
-        array[i] = array[rand];
-        array[rand] = temp;
-    }
+    let temp = array[i];
+    array[i] = array[rand];
+    array[rand] = temp;
+  }
 
-    return array;
+  return array;
+}
+
+function check(pw) {
+  console.log(pw);
 }
