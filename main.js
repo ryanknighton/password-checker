@@ -221,7 +221,7 @@ function randomWord() {
   var array = [];
 
   while (array.length < num) {
-    var temp = words[Math.floor(Math.random() * num)];
+    var temp = words[Math.floor(Math.random() * words.length)];
     if (array.indexOf(temp) < 0) {
       newHTML += temp + ' ';
       array.push(temp);
