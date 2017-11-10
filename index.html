@@ -11,7 +11,7 @@
 
 </head>
 
-<body onload="populateSelect()">
+<body onload="populateSelects()">
   <h1>Check My Password</h1>
 
   <input type="password" id="input" placeholder="Password" onchange="passwordChanged()">
@@ -39,9 +39,9 @@
   <label for="letters">Include lowercase letters</label>
   <br>
   <button type="button" id="generateBtn" onclick="generate()">Generate</button>
-  
+
   <hr>
-  
+
   <h1>Random Word Generator</h1>
   <p>How many random words to generate:</p>
   <select id="randNum"></select>
