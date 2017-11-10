@@ -125,10 +125,10 @@ function randomWord() {
   while (array.length < num) {
     var temp = words[Math.floor(Math.random() * num)];
     if (array.indexOf(temp) < 0) {
-      newHTML += ',' + temp;
+      newHTML += temp ' ';
       array.push(temp);
     }
   }
   
-  document.getElementById('randomword').innerHTML = '<p>' + newHTML +'</p>';
+  document.getElementById('randomwords').innerHTML = '<p>' + newHTML +'</p>';
 }
