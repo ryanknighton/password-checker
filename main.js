@@ -119,17 +119,16 @@ function randomWord() {
                "field"];
   
   var num = document.getElementById('randNum').value;
-  var paragraph = document.createElement("p");
+  var newHTML = '';
   var array = [];
   
   while (array.length < num) {
-    var randNum = Math.floor(Math.random() * num);
-    if (array.indexOf(randNum) < 0) {
-      var temp = document.createTextNode(words[randNum]);
-      paragraph.appendChild(temp);
-      array.push(randNum);
+    var temp = words[Math.floor(Math.random() * num)];
+    if (array.indexOf(temp) < 0) {
+      newHTML += ',' + temp;
+      array.push(temp);
     }
   }
   
-  document.getElementById('randomword').appendChild(paragraph);
+  document.getElementById('randomword').innerHTML = '<p>' + newHTML +'</p>';
 }
