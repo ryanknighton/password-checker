@@ -124,10 +124,10 @@ function randomWord() {
   
   while (array.length < num) {
     var randNum = Math.floor(Math.random() * num);
-    if (array.indexOf(randNum) > -1) {
+    if (array.indexOf(randNum) < 0) {
       var temp = document.createTextNode(words[randNum]);
       paragraph.appendChild(temp);
-      array(array.length) = randNum;
+      array.push(randNum);
     }
   }
   
