@@ -228,7 +228,7 @@ function randomWord() {
     }
   }
 
-  document.getElementById('randomwords').innerHTML = '<p>' + newHTML +'</p>';
+  document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
 }
 
 /*

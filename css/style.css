@@ -1,0 +1,46 @@
+.jumbotron{
+	background-color: #eaebed;
+}
+.gauge-side{
+	text-align: center;
+}
+.main-row{
+	width:90% ;
+	margin: 0 auto;
+}
+.secondary-row{
+	width:90% ;
+	margin: 0 auto;
+}
+.selectpicker, #output{
+	margin-bottom: 5%;
+}
+#generateBtn{
+	margin-top: 5%;
+}
+input{
+	font-size: 1.5em !important;
+}
+.btn{
+	background-color: #3E4551!important;
+	font-size: 1em;
+	margin: 0;
+}
+.btn:hover{
+	background-color: #7d889b !important;
+}
+.btn:focus{
+	background-color: #7d889b !important;
+}
+#randWord{
+	margin-top:5%;
+}
+#randomwords{
+	margin-top: 5%;
+}
+footer.page-footer .footer-copyright{
+	font-size: 1em !important;
+}
+.alert-success{
+	font-size: 1.2em;
+}
