@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Password Checker</title>
+
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="main.js" charset="utf-8"></script>
+
+</head>
+
+<body onload="populateSelects()">
+  <h1>Check My Password</h1>
+
+  <input type="password" id="input" placeholder="Password" onchange="passwordChanged()">
+
+  <hr>
+  <h1>Generate a Password</h1>
+  <input type="text" id="output" value="New Password">
+  <p>Length of Password:</p>
+  <select id="length">
+  </select>
+  <br>
+  <p>Excluded Characters:</p>
+  <input type="text" id="excluded" placeholder="Excluded Characters">
+  <br>
+  <input type="checkbox" id="numbers">
+  <label for="excluded">Include numbers</label>
+  <br>
+  <input type="checkbox" id="symbols">
+  <label for="symbols">Include symbols</label>
+  <br>
+  <input type="checkbox" id="uppers">
+  <label for="letters">Include uppercase letters</label>
+  <br>
+  <input type="checkbox" id="lowers" checked>
+  <label for="letters">Include lowercase letters</label>
+  <br>
+  <button type="button" id="generateBtn" onclick="generate()">Generate</button>
+
+  <hr>
+
+  <h1>Random Word Generator</h1>
+  <p>How many random words to generate:</p>
+  <select id="randNum"></select>
+  <br>
+  <button type="button" id="randWord" onclick="randomWord()">Populate</button>
+  <div id="randomwords"></div>
+
+</body>
+</html>
