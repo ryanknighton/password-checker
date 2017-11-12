@@ -15,7 +15,7 @@ $(document).ready(function() {
 	};
 
 	var passwordStrength = 0;
-	let target = $("#gauge");
+	let target = document.getElementById('gauge');
 	let gauge = new Gauge(target).setOptions(opts);
 	gauge.maxValue = 10;
 	gauge.set(0);
