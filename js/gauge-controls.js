@@ -5,7 +5,6 @@ function getStrength(pw) {
     utilizing the random word strategy
     Not beginning with a symbol character
   */
-  var pw = $(this).val();
   var upperCase= new RegExp('[A-Z]');
   var lowerCase= new RegExp('[a-z]');
   var numbers = new RegExp('[0-9]');
@@ -90,6 +89,7 @@ $(document).ready(function() {
   gauge.set(0);
 
   $("#input").on("change keyup paste", function() {
+    let pw = $(this).val();
     let strength = getStrength(pw);
     gauge.set(strength);
   });
