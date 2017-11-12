@@ -27,13 +27,20 @@ $(document).ready(function() {
 		var numbers = new RegExp('[0-9]');
 		var symbols = new RegExp('/[-!$%^&*()_+|~=`{}\[\]:";\'<>?,.\/]/');
 
-		if(pw.match(upperCase) && pw.match(lowerCase) && pw.match(numbers) && pw.match(symbols)) {
+		let hasSym = pw.match(symbols);
+		let hasUpper = pw.match(upperCase);
+		let hasLower = pw.match(lowerCase);
+		let hasNum = pw.match(numbers);
+
+		console.log("Sym:", hasSym);
+
+		if(hasUpper && hasLower && hasNum && hasSym) {
 		    passwordStrength = 10;
-		}else if(pw.match(upperCase) && pw.match(lowerCase) && pw.match(numbers)) {
+		}else if(hasUpper && hasLower && hasNum) {
 		    passwordStrength = 7;
-		}else if(pw.match(upperCase) && pw.match(lowerCase)) {
+		}else if(hasUpper && hasLower) {
 		    passwordStrength = 4;
-		}else if(pw.match(upperCase) || pw.match(lowerCase)) {
+		}else if(hasUpper || hasLower) {
 		    passwordStrength = 2;
 		}else{
 			passwordStrength = 0;
