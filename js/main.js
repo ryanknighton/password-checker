@@ -54,11 +54,6 @@ function populateSelects() {
   }
 }
 
-function passwordChanged() {
-  pw = document.getElementById('input').value;
-  check(pw);
-}
-
 function generate() {
   let validSet = new Array();
   let pass = new Array();
@@ -144,10 +139,6 @@ function shuffle(array) {
   }
 
   return array;
-}
-
-function check(pw) {
-  console.log(pw);
 }
 
 function generate() {
