@@ -68,8 +68,6 @@ function generate() {
   fltrSymbols = symbols.filter(x => !excluded.has(x));
   fltrAlphabetUpper = alphabetUpper.filter(x => !excluded.has(x));
   fltrAlphabetLower = alphabetLower.filter(x => !excluded.has(x));
-  console.log(excluded);
-  console.log(fltrNumbers, fltrSymbols, fltrAlphabetUpper, fltrAlphabetLower);
 
   if (includeNum()) {
     pass.push(fltrNumbers[Math.floor(Math.random()*fltrNumbers.length)])
@@ -246,9 +244,9 @@ NYTimes: 5 <= length <= 15
 function checkPassRequirements() {
   var insta, espn, amazon, craigslist, dropbox, google, hulu, linkedin, github, ebay, facebook, itunes, microsoft, netflix, nytimes = false;
   pw = document.getElementById('input').value;
-  
+
   //TODO: github, ebay, facebook, itunes, microsoft
-  
+
   if (pw.length >= 6) {
     insta = true;
     espn = true;
