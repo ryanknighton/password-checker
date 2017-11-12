@@ -20,17 +20,17 @@ $(document).ready(function() {
 	gauge.maxValue = 10;
 	gauge.set(0);
 
-	$("#input").change(function() {
+	$("#input").on("change keyup paste", function() {
 		var pw = $(this).val();
   	var upperCase= new RegExp('[A-Z]');
 		var lowerCase= new RegExp('[a-z]');
 		var numbers = new RegExp('[0-9]');
-		var symbols = new RegExp('/[-!$%^&*()_+|~=`{}\[\]:";\'<>?,.\/]/');
+		var symbols = new RegExp(/[@~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
-		let hasSym = pw.match(symbols);
-		let hasUpper = pw.match(upperCase);
-		let hasLower = pw.match(lowerCase);
-		let hasNum = pw.match(numbers);
+		let hasSym = symbols.test(pw);
+		let hasUpper = upperCase.test(pw);
+		let hasLower = lowerCase.test(pw);
+		let hasNum = numbers.test(pw);
 
 		console.log("Sym:", hasSym);
 		console.log("Number:", hasNum);
