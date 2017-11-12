@@ -33,6 +33,7 @@ $(document).ready(function() {
 		let hasNum = pw.match(numbers);
 
 		console.log("Sym:", hasSym);
+		console.log("Number:", hasNum);
 
 		if(hasUpper && hasLower && hasNum && hasSym) {
 		    passwordStrength = 10;
