@@ -73,19 +73,18 @@ $(document).ready(function() {
     lineWidth: 0.44, // The line thickness
     radiusScale: 1, // Relative radius
     pointer: {
-      length: 1, // // Relative to gauge radius
+      length: 0.5, // // Relative to gauge radius
       strokeWidth: 0.035, // The thickness
       color: '#000000' // Fill color
     },
-    limitMax: false,
-    colorStart: '#6FADCF',   // Colors
-    colorStop: '#8FC0DA',    // just experiment with them
+    percentColors: [[0.0, "#F03E3E" ], [0.50, "#FFDD00"], [1.0, "#30B32D"]],
     strokeColor: '#E0E0E0',  // to see which ones work best for you
     generateGradient: true,
   };
 
   let target = document.getElementById('gauge');
   let gauge = new Gauge(target).setOptions(opts);
+  gauge.maxValue = 8;
   gauge.set(0);
 
   $("#input").on("change keyup paste", function() {
