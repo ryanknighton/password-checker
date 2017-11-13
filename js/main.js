@@ -54,11 +54,6 @@ function populateSelects() {
   }
 }
 
-function passwordChanged() {
-  pw = document.getElementById('input').value;
-  check(pw);
-}
-
 function generate() {
   let validSet = new Array();
   let pass = new Array();
@@ -68,8 +63,6 @@ function generate() {
   fltrSymbols = symbols.filter(x => !excluded.has(x));
   fltrAlphabetUpper = alphabetUpper.filter(x => !excluded.has(x));
   fltrAlphabetLower = alphabetLower.filter(x => !excluded.has(x));
-  console.log(excluded);
-  console.log(fltrNumbers, fltrSymbols, fltrAlphabetUpper, fltrAlphabetLower);
 
   if (includeNum()) {
     pass.push(fltrNumbers[Math.floor(Math.random()*fltrNumbers.length)])
@@ -148,10 +141,6 @@ function shuffle(array) {
   return array;
 }
 
-function check(pw) {
-  console.log(pw);
-}
-
 function generate() {
   let validSet = new Array();
 
@@ -228,7 +217,7 @@ function randomWord() {
     }
   }
 
-  document.getElementById('randomwords').innerHTML = '<p>' + newHTML +'</p>';
+  document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
 }
 
 /*
@@ -246,9 +235,9 @@ NYTimes: 5 <= length <= 15
 function checkPassRequirements() {
   var insta, espn, amazon, craigslist, dropbox, google, hulu, linkedin, github, ebay, facebook, itunes, microsoft, netflix, nytimes = false;
   pw = document.getElementById('input').value;
-  
+
   //TODO: github, ebay, facebook, itunes, microsoft
-  
+
   if (pw.length >= 6) {
     insta = true;
     espn = true;
