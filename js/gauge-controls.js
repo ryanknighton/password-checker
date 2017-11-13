@@ -235,12 +235,14 @@ $(document).ready(function() {
   }
 
   function warnUser(pw) {
-    urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
+    let msg = document.getElementById('warning');
+    msg.innerHTML = "";
+    
+    let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
     fetch(urlString).then(
         function(response) {
-            let msg = document.getElementById('warning');
             if(response.status === 200) {
-              msg.innerHTML = "Warning your may have been exposed. ";
+              msg.innerHTML = "Warning your password may have been exposed. ";
               msg.innerHTML += '<a href="https://haveibeenpwned.com/Passwords">See more...</a>';
             }else if (response.status === 404) {
               msg.innerHTML = "";
