@@ -73,7 +73,7 @@ $(document).ready(function() {
     lineWidth: 0.44, // The line thickness
     radiusScale: 1, // Relative radius
     pointer: {
-      length: 0.5, // // Relative to gauge radius
+      length: 0.85, // // Relative to gauge radius
       strokeWidth: 0.035, // The thickness
       color: '#000000' // Fill color
     },
@@ -238,12 +238,12 @@ $(document).ready(function() {
     urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
     fetch(urlString).then(
         function(response) {
-            let msq = document.getElementById('warning');
+            let msg = document.getElementById('warning');
             if(response.status === 200) {
               msg.innerHTML = "Warning your may have been exposed. ";
-              msq.innerHTML += '<a href="https://haveibeenpwned.com/Passwords">See more...</a>';
+              msg.innerHTML += '<a href="https://haveibeenpwned.com/Passwords">See more...</a>';
             }else if (response.status === 404) {
-              msq.innerHTML = "";
+              msg.innerHTML = "";
             } else {
               console.log('response code error');
             }
