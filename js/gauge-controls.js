@@ -1,10 +1,4 @@
 function getStrength(pw) {
-  /*
-    Rules we should consider adding:
-    Shouldn't contain dictionary words or names unless
-    utilizing the random word strategy
-    Not beginning with a symbol character
-  */
   var upperCase= new RegExp('[A-Z]');
   var lowerCase= new RegExp('[a-z]');
   var numbers = new RegExp('[0-9]');
@@ -68,6 +62,11 @@ function getStrength(pw) {
   
   if (strength > 7) {
     setMessage("Nice password!");
+  }
+  
+  if (commonPasswords.indexOf(pw) > -1) {
+    strength = 0;
+    setMessage("Your password is one of the top 1000 most common passwords. Never use this password.");
   }
 
   return strength;
