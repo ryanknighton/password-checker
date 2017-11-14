@@ -102,7 +102,7 @@ $(document).ready(function() {
     gauge.set(strength);
 
     let hashed = SHA1(pw);
-    warnUser(hashed);
+    setTimeout(function(){warnUser(hashed);}, 200);
   });
 
   /**
@@ -248,7 +248,7 @@ $(document).ready(function() {
     msg.innerHTML = "";
 
     let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
-    fetch(urlString).then(sleeper(1600)).then(
+    fetch(urlString).then(
         function(response) {
             if(response.status === 200) {
               msg.innerHTML = "Warning your password may have been exposed. ";
@@ -261,10 +261,4 @@ $(document).ready(function() {
         }
     );
   }
-
-  function sleeper(ms) {
-  return function(x) {
-    return new Promise(resolve => setTimeout(() => resolve(x), ms));
-  };
-}
 });
