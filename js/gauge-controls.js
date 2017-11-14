@@ -73,7 +73,7 @@ $(document).ready(function() {
     lineWidth: 0.44, // The line thickness
     radiusScale: 1, // Relative radius
     pointer: {
-      length: 0.85, // // Relative to gauge radius
+      length: 0.65, // // Relative to gauge radius
       strokeWidth: 0.035, // The thickness
       color: '#000000' // Fill color
     },
@@ -237,7 +237,7 @@ $(document).ready(function() {
   function warnUser(pw) {
     let msg = document.getElementById('warning');
     msg.innerHTML = "";
-    
+
     let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
     fetch(urlString).then(
         function(response) {
