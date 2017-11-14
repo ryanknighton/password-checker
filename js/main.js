@@ -157,10 +157,6 @@ function includeLower() {
   return document.getElementById('lowers').checked;
 }
 
-function excludedChars() {
-  return document.getElementById('excluded').value.split();
-}
-
 function getLength() {
   return document.getElementById('length').value;
 }
