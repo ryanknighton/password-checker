@@ -84,6 +84,7 @@ function generate() {
     validSet = validSet.concat(fltrAlphabetLower);
   }
 
+  console.log(pass);
   let length = getLength();
   for (let i = pass.length; i < length; i++) {
     let item = validSet[Math.floor(Math.random()*validSet.length)];
@@ -92,6 +93,7 @@ function generate() {
   }
 
   shuffle(pass);
+  console.log(pass);
   displayPass(pass.join(''));
 }
 
