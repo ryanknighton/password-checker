@@ -59,6 +59,16 @@ function getStrength(pw) {
   } else {
     setMessage("Secure passwords are at least 8 characters.");
   }
+  
+  if (!(pw.charAt(pw.length - 1).match(symbols) || pw.charAt(0).match(symbols)) {
+    strength += 1;
+  } else {
+    setMessage("Avoid using a symbol for the first and/or last character.");
+  }
+  
+  if (strength > 7) {
+    setMessage("Nice password!");
+  }
 
   return strength;
 }
