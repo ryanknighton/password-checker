@@ -16,6 +16,12 @@ function getStrength(pw) {
   let hasNum = numbers.test(pw);
 
   let strength = 0;
+  
+  if (pw.length > 0 && !(symbols.test(pw.charAt(pw.length - 1)) || symbols.test(pw.charAt(0)))) {
+    strength += 1;
+  } else {
+    setMessage("Avoid using a symbol for the first and/or last character.");
+  }
 
   if(pw.length > 11) {
     strength += 1;
@@ -58,12 +64,6 @@ function getStrength(pw) {
     strength += 1;
   } else {
     setMessage("Secure passwords are at least 8 characters.");
-  }
-  
-  if (!(symbols.test(pw.charAt(pw.length - 1)) || symbols.test(pw.charAt(0)))) {
-    strength += 1;
-  } else {
-    setMessage("Avoid using a symbol for the first and/or last character.");
   }
   
   if (strength > 7) {
