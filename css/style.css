@@ -46,5 +46,14 @@ footer.page-footer .footer-copyright{
 }
 
 #warning{
+	min-height: 60px;
 	color: #e61414;
+}
+.criteria-list{
+	list-style: none;
+	font-size: 2em;
+	column-count: 2;
+}
+.passes{
+	color: #00b300;
 }
