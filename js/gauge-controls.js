@@ -102,7 +102,7 @@ $(document).ready(function() {
     gauge.set(strength);
 
     let hashed = SHA1(pw);
-    setTimeout(function(){warnUser(hashed);}, 1600);
+    warnUser(hashed);
   });
 
   /**
