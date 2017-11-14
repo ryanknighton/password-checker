@@ -12,7 +12,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css" rel="stylesheet">
   <!--main css-->
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <!-- bootsrap js requires jQuery-->
+  <!-- Bootstrap js requires jQuery-->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <!-- adding Bootstrap javascript-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -31,14 +31,15 @@
 <div class="row main-row">
 <div class="col-sm-6">
   <h1 class="display-3 main-header">Check My Password</h1>
-  <p class="lead">Some instructions on how to use the app.....</p>
-    <input type="password" id="input" placeholder="Password" onchange="passwordChanged()" class="form-control">
+  <p class="lead">Enter your password</p>
+    <input type="password" id="input" placeholder="Password" class="form-control">
     <button type="button" id="checkBtn" class="btn btn-secondary">Check Password</button>
 </div><!-- /.col-sm-6-->
 <div class="col-sm-6 gauge-side">
+  <p id="warning"></p>
   <canvas width=300 height=200 id="gauge"></canvas>
-  <div id="preview-textfield">Some text for the guage and it's functionality</div>
-  
+  <div id="preview-textfield">Strong passwords are important!</div>
+
 </div><!-- /.col-sm-6-->
 </div><!-- /.jumbotron-->
 </div><!-- /.row-->

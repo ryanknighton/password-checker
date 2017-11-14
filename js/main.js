@@ -54,11 +54,6 @@ function populateSelects() {
   }
 }
 
-function passwordChanged() {
-  pw = document.getElementById('input').value;
-  check(pw);
-}
-
 function generate() {
   let validSet = new Array();
   let pass = new Array();
@@ -68,8 +63,6 @@ function generate() {
   fltrSymbols = symbols.filter(x => !excluded.has(x));
   fltrAlphabetUpper = alphabetUpper.filter(x => !excluded.has(x));
   fltrAlphabetLower = alphabetLower.filter(x => !excluded.has(x));
-  console.log(excluded);
-  console.log(fltrNumbers, fltrSymbols, fltrAlphabetUpper, fltrAlphabetLower);
 
   if (includeNum()) {
     pass.push(fltrNumbers[Math.floor(Math.random()*fltrNumbers.length)])
@@ -146,10 +139,6 @@ function shuffle(array) {
   }
 
   return array;
-}
-
-function check(pw) {
-  console.log(pw);
 }
 
 function generate() {
@@ -232,23 +221,23 @@ function randomWord() {
 }
 
 /*
-SOURCE: http://passrequirements.com/list.php
-Instagram, ESPN, Amazon, Dropbox, hulu, linkedin: length >= 6
-Craigslist, google: length >= 8
-Github: at least 1 lowercase letter, 1 number, and 7 characters
-Ebay: 6 <= length <= 64, includes at least 1 number or symbol
-Facebook: length >= 6, includes at least 1 letter and symbol
-iTunes: length >= 8, at least 1 number, uppercase, lowercase letter, no spaces, cannot have same character 3 times in a row
-Microsoft: length >= 8, at least 2 uppercase, lowercase letters, numbers and symbols
-Netflix: 4 <= length <= 60
-NYTimes: 5 <= length <= 15
+  SOURCE: http://passrequirements.com/list.php
+  Instagram, ESPN, Amazon, Dropbox, hulu, linkedin: length >= 6
+  Craigslist, google: length >= 8
+  Github: at least 1 lowercase letter, 1 number, and 7 characters
+  Ebay: 6 <= length <= 64, includes at least 1 number or symbol
+  Facebook: length >= 6, includes at least 1 letter and symbol
+  iTunes: length >= 8, at least 1 number, uppercase, lowercase letter, no spaces, cannot have same character 3 times in a row
+  Microsoft: length >= 8, at least 2 uppercase, lowercase letters, numbers and symbols
+  Netflix: 4 <= length <= 60
+  NYTimes: 5 <= length <= 15
 */
 function checkPassRequirements() {
   var insta, espn, amazon, craigslist, dropbox, google, hulu, linkedin, github, ebay, facebook, itunes, microsoft, netflix, nytimes = false;
   pw = document.getElementById('input').value;
-  
+
   //TODO: github, ebay, facebook, itunes, microsoft
-  
+
   if (pw.length >= 6) {
     insta = true;
     espn = true;

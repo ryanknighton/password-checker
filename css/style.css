@@ -44,3 +44,7 @@ footer.page-footer .footer-copyright{
 .alert-success{
 	font-size: 1.2em;
 }
+
+#warning{
+	color: #e61414;
+}
