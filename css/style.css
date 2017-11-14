@@ -1,59 +1,98 @@
-.jumbotron{
-	background-color: #eaebed;
+.container {
+    width: 90%;
+    margin: 0 auto;
 }
-.gauge-side{
-	text-align: center;
+hr {
+    width: 90%;
+    margin: 2% auto;
 }
-.main-row{
-	width:90% ;
-	margin: 0 auto;
+canvas {
+    width: 100%;
+    height: auto;
 }
-.secondary-row{
-	width:90% ;
-	margin: 0 auto;
+.jumbotron {
+    background-color: #eaebed;
 }
-.selectpicker, #output{
-	margin-bottom: 5%;
+.gauge-side {
+    text-align: center;
 }
-#generateBtn{
-	margin-top: 5%;
+.main-row {
+    width: 90%;
+    margin: 0 auto;
 }
-input{
-	font-size: 1.5em !important;
+.secondary-row {
+    width: 95%;
+    margin: 0 auto;
 }
-.btn{
-	background-color: #3E4551!important;
-	font-size: 1em;
-	margin: 0;
+.third-row {
+    width: 95%;
+    margin: 0 auto;
 }
-.btn:hover{
-	background-color: #7d889b !important;
+.common-websites {
+    text-align: center;
 }
-.btn:focus{
-	background-color: #7d889b !important;
+.selectpicker,
+#output {
+    margin-bottom: 5%;
 }
-#randWord{
-	margin-top:5%;
+#generateBtn {
+    margin-top: 5%;
 }
-#randomwords{
-	margin-top: 5%;
+input {
+    font-size: 1.5em !important;
 }
-footer.page-footer .footer-copyright{
-	font-size: 1em !important;
+.btn {
+    background-color: #3E4551!important;
+    font-size: 1em;
+    margin: 0;
 }
-.alert-success{
-	font-size: 1.2em;
+.btn:hover {
+    background-color: #7d889b !important;
 }
-
-#warning{
-	min-height: 60px;
-	color: #e61414;
+.btn:focus {
+    background-color: #7d889b !important;
 }
-.criteria-list{
-	list-style: none;
-	font-size: 2em;
-	column-count: 2;
+#randWord {
+    margin-top: 5%;
 }
-.passes{
-	color: #00b300;
+#randomwords {
+    margin-top: 5%;
+}
+footer.page-footer .footer-copyright {
+    font-size: 1em !important;
+}
+.alert-success {
+    font-size: 1.2em;
+}
+#warning {
+    min-height: 60px;
+    color: #e61414;
+}
+.criteria-list {
+    list-style: none;
+    font-size: 2em;
+    column-count: 2;
+    padding: 0;
+}
+.passes {
+    color: #00b300;
+}
+#secure-content {
+    font-size: 1.1em;
+    width: 80%;
+    margin: 0 auto;
+}
+#tips-content {
+    width: 80%;
+    margin: 0 auto;
+}
+.tip-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1em;
+}
+.generate-words,
+.generator {
+    width: 80%;
+    margin: 0 auto;
 }
