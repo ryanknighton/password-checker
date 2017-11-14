@@ -84,7 +84,6 @@ function generate() {
     validSet = validSet.concat(fltrAlphabetLower);
   }
 
-  console.log(pass);
   let length = getLength();
   for (let i = pass.length; i < length; i++) {
     let item = validSet[Math.floor(Math.random()*validSet.length)];
@@ -93,7 +92,6 @@ function generate() {
   }
 
   shuffle(pass);
-  console.log(pass);
   displayPass(pass.join(''));
 }
 
@@ -141,40 +139,6 @@ function shuffle(array) {
   }
 
   return array;
-}
-
-function generate() {
-  let validSet = new Array();
-
-  if (includeNum()) {
-    validSet = validSet.concat(numbers);
-  }
-
-  if (includeSym()) {
-    validSet = validSet.concat(symbols);
-  }
-
-  if (includeUpper()) {
-    validSet = validSet.concat(alphabetUpper);
-  }
-
-  if (includeLower()) {
-    validSet = validSet.concat(alphabetLower);
-  }
-
-  let excluded = excludedChars();
-  validSet = validSet.filter(x => excluded.indexOf(x) < 0 );
-
-  let pass = new Array();
-
-  let length = getLength();
-  for (let i = 0; i < length; i++) {
-    let item = validSet[Math.floor(Math.random()*validSet.length)];
-
-    pass.push(item);
-  }
-
-  displayPass(pass.join(''));
 }
 
 function includeNum() {
