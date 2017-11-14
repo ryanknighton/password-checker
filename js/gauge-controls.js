@@ -248,7 +248,7 @@ $(document).ready(function() {
     msg.innerHTML = "";
 
     let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
-    fetch(urlString).then(sleeper(100)).then(
+    fetch(urlString).then(sleeper(1600)).then(
         function(response) {
             if(response.status === 200) {
               msg.innerHTML = "Warning your password may have been exposed. ";
