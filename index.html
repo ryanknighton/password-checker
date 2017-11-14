@@ -1,101 +1,139 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>Password Checker</title>
-
-  <!-- adding Bootstrap css -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <!--bootstrap addon css for footer-->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css" rel="stylesheet">
-  <!--main css-->
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <!-- Bootstrap js requires jQuery-->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <!-- adding Bootstrap javascript-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- adding gauge.js-->
-  <script src="js/gauge.js" charset="utf-8"></script>
+    <title>Password Checker</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- adding fontawesomne-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- adding Bootstrap css -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--bootstrap addon css for footer-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css" rel="stylesheet">
+    <!--main css-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Bootstrap js requires jQuery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- adding Bootstrap javascript-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- adding gauge.js-->
+    <script src="js/gauge.js" charset="utf-8"></script>
     <!-- adding gauge-controls file-->
-  <script src="js/gauge-controls.js" charset="utf-8"></script>
-  <script src="js/main.js" charset="utf-8"></script>
-
+    <script src="js/gauge-controls.js" charset="utf-8"></script>
+    <script src="js/common-criteria.js" charset="utf-8"></script>
+    <script src="js/main.js" charset="utf-8"></script>
 </head>
 
 <body onload="populateSelects()">
-
-
-<div class="jumbotron">
-<div class="row main-row">
-<div class="col-sm-6">
-  <h1 class="display-3 main-header">Check My Password</h1>
-  <p class="lead">Some instructions on how to use the app.....</p>
-    <input type="password" id="input" placeholder="Password" class="form-control">
-    <button type="button" id="checkBtn" class="btn btn-secondary">Check Password</button>
-</div><!-- /.col-sm-6-->
-<div class="col-sm-6 gauge-side">
-  <canvas width=300 height=200 id="gauge"></canvas>
-  <div id="preview-textfield">Strong passwords are important!</div>
-
-</div><!-- /.col-sm-6-->
-</div><!-- /.jumbotron-->
-</div><!-- /.row-->
-
-<div class="row secondary-row">
-
-<div class="col-sm-6">
-
-  <h1>Generate a Password</h1>
-  <input type="text" id="output" value="New Password" class="form-control">
-  <p>Length of Password:</p>
-  <select id="length" class="selectpicker">
-  </select>
-  <br>
-  <p>Excluded Characters:</p>
-  <input type="text" id="excluded" placeholder="Excluded Characters" class="form-control">
-  <br>
-  <input type="checkbox" id="numbers">
-  <label for="excluded">Include numbers</label>
-  <br>
-  <input type="checkbox" id="symbols">
-  <label for="symbols">Include symbols</label>
-  <br>
-  <input type="checkbox" id="uppers">
-  <label for="letters">Include uppercase letters</label>
-  <br>
-  <input type="checkbox" id="lowers" checked>
-  <label for="letters">Include lowercase letters</label>
-  <br>
-  <button type="button" id="generateBtn" class="btn btn-secondary"onclick="generate()">Generate</button>
-
- </div><!--/.col-sm-6-->
- <div class="col-sm-6">
-
-  <h1>Random Word Generator</h1>
-  <p>How many random words to generate:</p>
-  <select id="randNum"></select>
-  <br>
-  <button type="button" id="randWord"  class="btn btn-secondary" onclick="randomWord()">Populate</button>
-  <div id="randomwords"></div>
-
-</div><!--/.col-sm-6-->
-
-</div><!--/.row-->
-
-
-
-<!--Footer-->
-<footer class="page-footer center-on-small-only stylish-color-dark">
-    <!--Copyright-->
-    <div class="footer-copyright">
-        <div class="container-fluid">
-           <p>CSE 4471 Passsword Checker</p>
-
+    <div class="jumbotron">
+        <div class="row main-row">
+            <div class="col-sm-6">
+                <h1 class="display-3 main-header">Check My Password</h1>
+                <p class="lead">Enter your password</p>
+                <input type="password" id="input" placeholder="Password" class="form-control">
+            </div>
+            <!-- /.col-sm-6-->
+            <div class="col-sm-4 gauge-side">
+                <canvas id="gauge"></canvas>
+                <div id="preview-textfield">Strong passwords are important!</div>
+                <p id="warning"></p>
+            </div>
+            <!-- /.col-sm-6-->
+            <div class="col-sm-2 common-websites">
+                <h4>Does your password meet their criteria?</h4>
+                <div id="password-criteria"></div>
+            </div>
+            <!-- /.col-sm-6-->
         </div>
-    </div><!--/.Copyright-->
-
-</footer><!--/.Footer-->
+        <!-- /.jumbotron-->
+    </div>
+    <!-- /.row-->
+    <div class="row secondary-row">
+        <div class="col-sm-6">
+            <div class="generator">
+                <h1>Generate a Password</h1>
+                <input type="text" id="output" value="New Password" class="form-control">
+                <p>Length of Password:</p>
+                <select id="length" class="selectpicker">
+                </select>
+                <br>
+                <p>Excluded Characters:</p>
+                <input type="text" id="excluded" placeholder="Excluded Characters" class="form-control">
+                <br>
+                <input type="checkbox" id="numbers">
+                <label for="excluded">Include numbers</label>
+                <br>
+                <input type="checkbox" id="symbols">
+                <label for="symbols">Include symbols</label>
+                <br>
+                <input type="checkbox" id="uppers">
+                <label for="letters">Include uppercase letters</label>
+                <br>
+                <input type="checkbox" id="lowers" checked>
+                <label for="letters">Include lowercase letters</label>
+                <br>
+                <button type="button" id="generateBtn" class="btn btn-secondary" onclick="generate()">Generate</button>
+            </div>
+            <!--/.generator-->
+        </div>
+        <!--/.col-sm-6-->
+        <div class="col-sm-6">
+            <div class="generate-words">
+                <h1>Random Word Generator</h1>
+                <p>How many random words to generate:</p>
+                <select id="randNum"></select>
+                <br>
+                <button type="button" id="randWord" class="btn btn-secondary" onclick="randomWord()">Generate</button>
+                <div id="randomwords"></div>
+            </div>
+            <!--/.generate-words-->
+        </div>
+        <!--/.col-sm-6-->
+    </div>
+    <!--/.row-->
+    <hr class="hr">
+    <div class="row third-row">
+        <div class="col-sm-6">
+            <div id="secure-content">
+                <h3>How to make sure your password is secure.</h3>
+                <p>In today's world we have passwords for everything. It might be convienient to have a single password for everything but sometimes the data is just too important to not make a secure password. Below are a few reference sites that might help you when creating your next secure password.</p>
+                <ul class="tip-list">
+                    <li><a href="https://krebsonsecurity.com/password-dos-and-donts/">Krebs on Security</a></li>
+                    <li><a href="https://www.cnet.com/how-to/the-guide-to-password-security-and-why-you-should-care/">Guide to Password Security</a></li>
+                    <li><a href="https://stormpath.com/blog/5-myths-password-security">5 Myths on Password Security</a></li>
+                    <li><a href="https://www.avatier.com/blog/what-makes-passwords-secure/">The Importance of Password Security</a></li>
+                    <li><a href="https://securityinabox.org/en/guide/passwords/">Create and Maintain Secure Passwords</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6 tips">
+            <div id="tips-content">
+                <h3>Tips for creating and keeping a strong password.</h3>
+                <ul class="tip-list">
+                    <li><i class="fa fa-check" aria-hidden="true"></i> Don’t post it for everyone to see.</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> Make the password is at least 8 characters long.</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> Use a mixture of uppercase and lowercase letters as well as numbers and symbols.</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> Don’t tell anyone your password. </li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> Be sure no one watches when you enter your password.</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> Don’t just use one password. </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Footer-->
+    <footer class="page-footer center-on-small-only stylish-color-dark">
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                <p>CSE 4471 Passsword Checker</p>
+            </div>
+        </div>
+        <!--/.Copyright-->
+    </footer>
+    <!--/.Footer-->
 </body>
+
 </html>

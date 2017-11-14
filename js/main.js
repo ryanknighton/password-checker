@@ -141,40 +141,6 @@ function shuffle(array) {
   return array;
 }
 
-function generate() {
-  let validSet = new Array();
-
-  if (includeNum()) {
-    validSet = validSet.concat(numbers);
-  }
-
-  if (includeSym()) {
-    validSet = validSet.concat(symbols);
-  }
-
-  if (includeUpper()) {
-    validSet = validSet.concat(alphabetUpper);
-  }
-
-  if (includeLower()) {
-    validSet = validSet.concat(alphabetLower);
-  }
-
-  let excluded = excludedChars();
-  validSet = validSet.filter(x => excluded.indexOf(x) < 0 );
-
-  let pass = new Array();
-
-  let length = getLength();
-  for (let i = 0; i < length; i++) {
-    let item = validSet[Math.floor(Math.random()*validSet.length)];
-
-    pass.push(item);
-  }
-
-  displayPass(pass.join(''));
-}
-
 function includeNum() {
   return document.getElementById('numbers').checked;
 }
@@ -189,10 +155,6 @@ function includeUpper() {
 
 function includeLower() {
   return document.getElementById('lowers').checked;
-}
-
-function excludedChars() {
-  return document.getElementById('excluded').value.split();
 }
 
 function getLength() {
@@ -218,42 +180,4 @@ function randomWord() {
   }
 
   document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
-}
-
-/*
-SOURCE: http://passrequirements.com/list.php
-Instagram, ESPN, Amazon, Dropbox, hulu, linkedin: length >= 6
-Craigslist, google: length >= 8
-Github: at least 1 lowercase letter, 1 number, and 7 characters
-Ebay: 6 <= length <= 64, includes at least 1 number or symbol
-Facebook: length >= 6, includes at least 1 letter and symbol
-iTunes: length >= 8, at least 1 number, uppercase, lowercase letter, no spaces, cannot have same character 3 times in a row
-Microsoft: length >= 8, at least 2 uppercase, lowercase letters, numbers and symbols
-Netflix: 4 <= length <= 60
-NYTimes: 5 <= length <= 15
-*/
-function checkPassRequirements() {
-  var insta, espn, amazon, craigslist, dropbox, google, hulu, linkedin, github, ebay, facebook, itunes, microsoft, netflix, nytimes = false;
-  pw = document.getElementById('input').value;
-
-  //TODO: github, ebay, facebook, itunes, microsoft
-
-  if (pw.length >= 6) {
-    insta = true;
-    espn = true;
-    amazon = true;
-    dropbox = true;
-    hulu = true;
-    linkedin = true;
-  }
-  if (pw.length >= 8) {
-    craigslist = true;
-    google = true;
-  }
-  if (pw.length >= 4 && pw.length <= 60) {
-    netflix = true;
-  }
-  if (pw.length >= 5 && pw.length <= nytimes) {
-    nytimes = true;
-  }
 }
