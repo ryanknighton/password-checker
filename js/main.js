@@ -19,6 +19,7 @@ const words = [
   "heartbreaking","puzzled","business","loving","private","field",
   "xylograph", "xenia", "yellow", "yawn", "yanked", "zenith", "zinger", "zonked"
 ];
+var wordString = "";
 
 function populateSelects() {
   let select = document.getElementById('length');
@@ -169,18 +170,17 @@ function displayPass(pass) {
 
 function randomWord() {
   let acronym = document.getElementById('acronym').value;
+  let newHTML = '';
 
   if (acronym) {
-    let newHTML = '';
     for (let i = 0; i < acronym.length; i++) {
       let letter = acronym[i];
       newHTML += selectWord(letter) + ' ';
     }
 
-    document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
+    presentWords(newHTML);
   } else {
     var num = document.getElementById('randNum').value;
-    var newHTML = '';
     var array = [];
 
     while (array.length < num) {
@@ -191,11 +191,47 @@ function randomWord() {
       }
     }
 
-    document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
+    presentWords(newHTML);
   }
+
+  wordString = newHTML;
+  toSecureButton();
 }
 
 function selectWord(letter) {
   let filtered = words.filter(x => x[0] === letter);
   return filtered[Math.floor(Math.random() * filtered.length)];
+}
+
+function toSecureButton() {
+  let button = document.getElementById('randWord');
+  button.innerHTML = "Make Secure";
+  button.onclick = makeSecure;
+}
+
+function toGenerateButton() {
+  let button = document.getElementById('randWord');
+  button.innerHTML = "Generate Another";
+  button.onclick = randomWord;
+}
+
+function makeSecure() {
+  let html = wordString.split(' ');
+  let temp = new Array();
+  for (let i = 0; i < html.length - 1; i++) {
+    let randIndex = Math.floor(Math.random() * html[i].length);
+    let word = html[i].substr(0, randIndex) + html[i][randIndex].toUpperCase() + html[i].substr(randIndex + 1);
+    temp.push(word);
+  }
+  html = temp.join(' ');
+  let nonLetterAlpha = numbers.concat(symbols);
+  html = html.replace(/\s/g, function () {
+    return nonLetterAlpha[Math.floor(Math.random() * nonLetterAlpha.length)];
+  });
+  presentWords(html);
+  toGenerateButton();
+}
+
+function presentWords(str) {
+  document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + str +'</p>';
 }
