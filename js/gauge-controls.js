@@ -12,7 +12,7 @@ function getStrength(pw) {
   let hasNum = numbers.test(pw);
 
   let strength = 0;
-  
+
   if (pw.length > 0 && !(symbols.test(pw.charAt(pw.length - 1)) || symbols.test(pw.charAt(0)))) {
     strength += 1;
   } else {
@@ -61,11 +61,11 @@ function getStrength(pw) {
   } else {
     setMessage("Secure passwords are at least 8 characters.");
   }
-  
+
   if (strength > 7) {
     setMessage("Nice password!");
   }
-  
+
   if (commonPasswords.indexOf(pw) > -1) {
     strength = 0;
     setMessage("Your password is one of the top 1000 most common passwords. Never use this password.");
@@ -249,7 +249,7 @@ $(document).ready(function() {
     let msg = document.getElementById('warning');
     msg.innerHTML = "";
 
-    var current = ($.now()) / 1000;
+    let current = ($.now()) / 1000;
 
     if ((current - last) > 0.5) {
       let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
@@ -266,7 +266,7 @@ $(document).ready(function() {
           }
       );
     }
+    
+    last = current;
   }
-
-  last = current;
 });
