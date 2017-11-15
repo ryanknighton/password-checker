@@ -142,7 +142,7 @@ function displayPass(pass) {
   dispBox.value = pass;
 }
 
-// Fisher-Yates Shuffle
+// Fisher-Yates Shuffle (standard implementation)
 function shuffle(array) {
   let i = array.length;
 

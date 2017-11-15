@@ -111,6 +111,7 @@ $(document).ready(function() {
   });
 
   /**
+  *  http://coursesweb.net/javascript/sha1-encrypt-data_cs
   *  Secure Hash Algorithm (SHA1)
   *  http://www.webtoolkit.info/
   **/
