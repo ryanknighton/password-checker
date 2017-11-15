@@ -7,4 +7,4 @@ CSE 4471 Group Project
 * add fuller features to word generator
 
 ## References
-*http://bernii.github.io/gauge.js/
+* http://bernii.github.io/gauge.js/
