@@ -168,7 +168,7 @@ function displayPass(pass) {
 }
 
 function randomWord() {
-  let acronym = document.getElementById('id').value;
+  let acronym = document.getElementById('acronym').value;
 
   if (acronym) {
     let newHTML = '';
