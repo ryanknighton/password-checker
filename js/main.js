@@ -21,6 +21,21 @@ const words = [
 ];
 var wordString = "";
 
+$(document).ready(function () {
+  $("#show").click(function(event) {
+    // Removes focus of the button.
+    $(this).blur();
+  });
+
+  $("#show").mouseover(function(event) {
+    $("#input").attr('type', 'text');
+  });
+
+  $("#show").mouseleave(function(event) {
+    $("#input").attr('type', 'password');
+  });
+});
+
 function populateSelects() {
   let select = document.getElementById('length');
 
