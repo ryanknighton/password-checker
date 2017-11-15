@@ -2,7 +2,7 @@ const alphabetLower = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const alphabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const numbers = '1234567890'.split('');
 const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'.split('');
-// 100 random words to choose from
+// 100+ random words to choose from
 const words = [
   "toys","friction","gleaming","glue","spiky","attract","daily","own","ski",
   "unit","trade","bee","lovely","skirt","wandering","queue","drab","drawer",
@@ -16,7 +16,8 @@ const words = [
   "future","knock","delirious","learn","exciting","acceptable","lying",
   "important","aberrant","cheer","order","breakable","lettuce","division",
   "sneeze","moaning","paste","notebook","versed","same","swanky","wink",
-  "heartbreaking","puzzled","business","loving","private","field"
+  "heartbreaking","puzzled","business","loving","private","field",
+  "xylograph", "xenia", "yellow", "yawn", "yanked", "zenith", "zinger", "zonked"
 ];
 
 function populateSelects() {
@@ -167,17 +168,34 @@ function displayPass(pass) {
 }
 
 function randomWord() {
-  var num = document.getElementById('randNum').value;
-  var newHTML = '';
-  var array = [];
+  let acronym = document.getElementById('id').value;
 
-  while (array.length < num) {
-    var temp = words[Math.floor(Math.random() * words.length)];
-    if (array.indexOf(temp) < 0) {
-      newHTML += temp + ' ';
-      array.push(temp);
+  if (acronym) {
+    let newHTML = '';
+    for (let i = 0; i < acronym.length; i++) {
+      let letter = acronym[i];
+      newHTML += selectWord(letter) + ' ';
     }
-  }
 
-  document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
+    document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
+  } else {
+    var num = document.getElementById('randNum').value;
+    var newHTML = '';
+    var array = [];
+
+    while (array.length < num) {
+      var temp = words[Math.floor(Math.random() * words.length)];
+      if (array.indexOf(temp) < 0) {
+        newHTML += temp + ' ';
+        array.push(temp);
+      }
+    }
+
+    document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
+  }
+}
+
+function selectWord(letter) {
+  let filtered = words.filter(x => x[0] === letter);
+  return filtered[Math.floor(Math.random() * filtered.length)];
 }

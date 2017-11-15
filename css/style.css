@@ -99,3 +99,11 @@ footer.page-footer .footer-copyright {
     width: 80%;
     margin: 0 auto;
 }
+
+#length {
+	width: 50px;
+}
+
+#randNum {
+	width: 50px;
+}

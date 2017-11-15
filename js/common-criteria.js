@@ -35,7 +35,7 @@ $("#input").on("change keyup paste", function() {
 
 function checkPassRequirements() {
 	$( ".fa" ).removeClass( "passes" );
-  	var upperCase = new RegExp('[A-Z]');
+	var upperCase = new RegExp('[A-Z]');
 	var lowerCase = new RegExp('[a-z]');
 	var numbers = new RegExp('[0-9]');
 	var symbols = new RegExp(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/);

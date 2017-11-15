@@ -59,7 +59,7 @@
                 <h1>Generate a Password</h1>
                 <input type="text" id="output" value="New Password" class="form-control">
                 <p>Length of Password:</p>
-                <select id="length" class="selectpicker">
+                <select class="form-control" id="length" class="selectpicker">
                 </select>
                 <br>
                 <p>Excluded Characters:</p>
@@ -86,8 +86,18 @@
             <div class="generate-words">
                 <h1>Random Word Generator</h1>
                 <p>We recommend chosing at least four randomly generated words to make up your password.</p>
-                <p>How many random words to generate:</p>
-                <select id="randNum"></select>
+                <p>How many random words to generate / desired acronym:</p>
+                <div class="form-inline">
+                  <div class="form-group">
+                    <select class="form-control" id="randNum"></select>
+                  </div>
+                  <div class="form-group">
+                    <p><b> or </b></p>
+                  </div>
+                  <div class="form-group">
+                    <input id="acronym" type="text" placeholder="Acronym" class="form-control">
+                  </div>
+                </div>
                 <br>
                 <button type="button" id="randWord" class="btn btn-secondary" onclick="randomWord()">Generate</button>
                 <div id="randomwords"></div>
