@@ -25,7 +25,7 @@ function populateSelects() {
   let weak = document.createElement('optgroup');
   weak.label = 'Weak';
   let strong = document.createElement('optgroup');
-  strong.label = 'Stong';
+  strong.label = 'Strong';
 
   for (let i = 4; i < 16; i++) {
     let opt = document.createElement('option');

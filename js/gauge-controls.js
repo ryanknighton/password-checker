@@ -1,3 +1,5 @@
+let last = 0;
+
 function getStrength(pw) {
   /*
     Rules we should consider adding:
@@ -238,18 +240,24 @@ $(document).ready(function() {
     let msg = document.getElementById('warning');
     msg.innerHTML = "";
 
-    let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
-    fetch(urlString).then(
-        function(response) {
-            if(response.status === 200) {
-              msg.innerHTML = "Warning your password may have been exposed. ";
-              msg.innerHTML += '<a href="https://haveibeenpwned.com/Passwords">See more...</a>';
-            }else if (response.status === 404) {
-              msg.innerHTML = "";
-            } else {
-              console.log('response code error');
-            }
-        }
-    );
+    var current = ($.now()) / 1000;
+
+    if ((current - last) > 0.5) {
+      let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
+      fetch(urlString).then(
+          function(response) {
+              if(response.status === 200) {
+                msg.innerHTML = "Warning your password may have been exposed. ";
+                msg.innerHTML += '<a href="https://haveibeenpwned.com/Passwords">See more...</a>';
+              }else if (response.status === 404) {
+                msg.innerHTML = "";
+              } else {
+                console.log('response code error');
+              }
+          }
+      );
+    }
   }
+
+  last = current;
 });
