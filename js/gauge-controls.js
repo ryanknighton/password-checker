@@ -1,12 +1,6 @@
 let last = 0;
 
 function getStrength(pw) {
-  /*
-    Rules we should consider adding:
-    Shouldn't contain dictionary words or names unless
-    utilizing the random word strategy
-    Not beginning with a symbol character
-  */
   var upperCase= new RegExp('[A-Z]');
   var lowerCase= new RegExp('[a-z]');
   var numbers = new RegExp('[0-9]');
@@ -18,6 +12,12 @@ function getStrength(pw) {
   let hasNum = numbers.test(pw);
 
   let strength = 0;
+  
+  if (pw.length > 0 && !(symbols.test(pw.charAt(pw.length - 1)) || symbols.test(pw.charAt(0)))) {
+    strength += 1;
+  } else {
+    setMessage("Avoid using a symbol for the first and/or last character.");
+  }
 
   if(pw.length > 11) {
     strength += 1;
@@ -60,6 +60,15 @@ function getStrength(pw) {
     strength += 1;
   } else {
     setMessage("Secure passwords are at least 8 characters.");
+  }
+  
+  if (strength > 7) {
+    setMessage("Nice password!");
+  }
+  
+  if (commonPasswords.indexOf(pw) > -1) {
+    strength = 0;
+    setMessage("Your password is one of the top 1000 most common passwords. Never use this password.");
   }
 
   return strength;
