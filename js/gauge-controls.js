@@ -1,6 +1,5 @@
-// Ian Burgan
-// Ryan Knighton
-// Michael Gary
+// Significant contributors: Tyler Stohr and Scott Hicks
+// This file updates the gauge as the user enters in their password and provides suggestions on how to improve their current password.
 
 let timer = null;
 
@@ -20,12 +19,14 @@ function getStrength(pw) {
   let strength = 0;
 
   // check against booleans and increase strength / set message accordingly
+  // Don't have symbol as first or last character
   if (pw.length > 0 && !(symbols.test(pw.charAt(pw.length - 1)) || symbols.test(pw.charAt(0)))) {
     strength += 1;
   } else {
     setMessage("Avoid using a symbol for the first and/or last character.");
   }
 
+  // Long password
   if(pw.length > 11) {
     strength += 1;
   } else {
@@ -33,6 +34,7 @@ function getStrength(pw) {
               " be more secure if it were longer.");
   }
 
+  // Includes symbol
   if(hasSym) {
     strength += 1;
   } else {
@@ -40,6 +42,7 @@ function getStrength(pw) {
               " making it harder to crack.");
   }
 
+  // Includes number
   if(hasNum) {
     strength += 1;
   } else {
@@ -49,30 +52,36 @@ function getStrength(pw) {
               " or birthday.");
   }
 
+  // Includes symbol and number
   if(hasNum && hasSym) {
     strength += 1;
   }
 
+  // Includes uppercase or lowercase letters
   if(hasUpper || hasLower) {
     strength += 1;
   }
 
+  // Includes both uppercase and lowercase letters
   if(hasUpper && hasLower) {
     strength += 1;
   } else {
     setMessage("Try mixing upper and lower-case letters.");
   }
 
+  // Length should be at least  8 characters
   if(pw.length > 7) {
     strength += 1;
   } else {
     setMessage("Secure passwords are at least 8 characters.");
   }
 
+  // If 8 of the above are present, it's a good password
   if (strength > 7) {
     setMessage("Nice password!");
   }
 
+  // Automatic fail if password matches one of the top 1000 passwords used
   if (commonPasswords.indexOf(pw) > -1) {
     strength = 0;
     setMessage("Your password is one of the top 1000 most common passwords. Never use this password.");
@@ -81,7 +90,7 @@ function getStrength(pw) {
   return strength;
 }
 
-// sets message displayed to user
+// Update message under the gauge
 function setMessage(string) {
   document.getElementById('preview-textfield').innerHTML = string;
 }
@@ -113,6 +122,7 @@ $(document).ready(function() {
     let pw = $(this).val();
     let strength = getStrength(pw);
     gauge.set(strength);
+
 
     // periodically send password to external database
     clearTimeout(timer);
@@ -262,7 +272,7 @@ $(document).ready(function() {
     return temp.toLowerCase();
   }
 
-  // check password against external database and warn user accordingly
+  // Check password in haveibeenpwned.com website and warn user accordingly
   function warnUser(pw) {
     let msg = document.getElementById('warning');
     msg.innerHTML = "";

@@ -1,5 +1,4 @@
-// Ian Burgan
-// Scott Hicks
+// Significant contributors: Ryan Knighton, Ian Burgan, Scott Hicks
 
 const alphabetLower = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const alphabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -41,6 +40,7 @@ $(document).ready(function () {
 });
 
 // populates select box where user selects length of password and random word
+
 function populateSelects() {
   let select = document.getElementById('length');
 
@@ -146,7 +146,7 @@ function excludedChars() {
 function getLength() {
   return document.getElementById('length').value;
 }
-// get values of check boxes for pw generation end
+// end get values of check boxes for pw generation
 
 // display the password to the user
 function displayPass(pass) {
@@ -169,6 +169,7 @@ function shuffle(array) {
 
   return array;
 }
+
 
 // allow a user to generate a password using random words
 function randomWord() {

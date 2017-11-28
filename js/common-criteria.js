@@ -1,6 +1,6 @@
-// Tyler Stohr
-// Scott Hicks
-// Checks password against requirements and lists requirements per site
+// Significant contributors: Tyler Stohr and Ian Burgan
+// This file provides the functionality to hover over a company's icon and see their password requirements.
+// It also shows the user when a websites criteria has been met
 
 $(document).ready(function(){
 $('[data-toggle="tooltip"]').tooltip();
@@ -25,7 +25,7 @@ function createCommonCriteria(){
  	"Twitter passwords must be longer than 5 characters.",
  	"Paypal passwords must be between 7 and 32 characters with lower/uppercase letters and numbers or special characters."];
 
-	// add reqs as tooltips to all icons
+	// Add the above strings of password requirements to each company image
 	var list = $('<ul class="criteria-list">');
 	for(var i=0;i<websites.length;i++){
 		list.append('<li data-toggle="tooltip" title="'+
@@ -36,6 +36,7 @@ function createCommonCriteria(){
 	$('#password-criteria').html(list);
 }
 
+// Update each image as the user enters in their password
 $("#input").on("change keyup paste", function() {
 		checkPassRequirements();
 });
@@ -80,7 +81,7 @@ function checkPassRequirements() {
 	}
 }
 
-// return true if whitespace is found
+// Check to see if white space is present in a password
 function hasWhiteSpace(s) {
   return s.indexOf(' ') >= 0;
 }
