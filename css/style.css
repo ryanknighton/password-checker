@@ -31,6 +31,9 @@ canvas {
 .common-websites {
     text-align: center;
 }
+.criteria-text{
+		font-size: 1em !important;
+}
 .selectpicker,
 #output {
     margin-bottom: 5%;
@@ -95,4 +98,12 @@ footer.page-footer .footer-copyright {
 .generator {
     width: 80%;
     margin: 0 auto;
+}
+
+#length {
+	width: 50px;
+}
+
+#randNum {
+	width: 50px;
 }

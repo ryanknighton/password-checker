@@ -2,7 +2,7 @@ const alphabetLower = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const alphabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const numbers = '1234567890'.split('');
 const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'.split('');
-// 100 random words to choose from
+// 100+ random words to choose from
 const words = [
   "toys","friction","gleaming","glue","spiky","attract","daily","own","ski",
   "unit","trade","bee","lovely","skirt","wandering","queue","drab","drawer",
@@ -16,8 +16,25 @@ const words = [
   "future","knock","delirious","learn","exciting","acceptable","lying",
   "important","aberrant","cheer","order","breakable","lettuce","division",
   "sneeze","moaning","paste","notebook","versed","same","swanky","wink",
-  "heartbreaking","puzzled","business","loving","private","field"
+  "heartbreaking","puzzled","business","loving","private","field",
+  "xylograph", "xenia", "yellow", "yawn", "yanked", "zenith", "zinger", "zonked"
 ];
+var wordString = "";
+
+$(document).ready(function () {
+  $("#show").click(function(event) {
+    // Removes focus of the button.
+    $(this).blur();
+  });
+
+  $("#show").mouseover(function(event) {
+    $("#input").attr('type', 'text');
+  });
+
+  $("#show").mouseleave(function(event) {
+    $("#input").attr('type', 'password');
+  });
+});
 
 function populateSelects() {
   let select = document.getElementById('length');
@@ -125,7 +142,7 @@ function displayPass(pass) {
   dispBox.value = pass;
 }
 
-// Fisher-Yates Shuffle
+// Fisher-Yates Shuffle (standard implementation)
 function shuffle(array) {
   let i = array.length;
 
@@ -167,17 +184,69 @@ function displayPass(pass) {
 }
 
 function randomWord() {
-  var num = document.getElementById('randNum').value;
-  var newHTML = '';
-  var array = [];
+  let acronym = document.getElementById('acronym').value;
+  let newHTML = '';
 
-  while (array.length < num) {
-    var temp = words[Math.floor(Math.random() * words.length)];
-    if (array.indexOf(temp) < 0) {
-      newHTML += temp + ' ';
-      array.push(temp);
+  if (acronym) {
+    for (let i = 0; i < acronym.length; i++) {
+      let letter = acronym[i];
+      newHTML += selectWord(letter) + ' ';
     }
+
+    presentWords(newHTML);
+  } else {
+    var num = document.getElementById('randNum').value;
+    var array = [];
+
+    while (array.length < num) {
+      var temp = words[Math.floor(Math.random() * words.length)];
+      if (array.indexOf(temp) < 0) {
+        newHTML += temp + ' ';
+        array.push(temp);
+      }
+    }
+
+    presentWords(newHTML);
   }
 
-  document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + newHTML +'</p>';
+  wordString = newHTML;
+  toSecureButton();
+}
+
+function selectWord(letter) {
+  let filtered = words.filter(x => x[0] === letter);
+  return filtered[Math.floor(Math.random() * filtered.length)];
+}
+
+function toSecureButton() {
+  let button = document.getElementById('randWord');
+  button.innerHTML = "Make Secure";
+  button.onclick = makeSecure;
+}
+
+function toGenerateButton() {
+  let button = document.getElementById('randWord');
+  button.innerHTML = "Generate Another";
+  button.onclick = randomWord;
+}
+
+function makeSecure() {
+  let html = wordString.split(' ');
+  let temp = new Array();
+  for (let i = 0; i < html.length - 1; i++) {
+    let randIndex = Math.floor(Math.random() * html[i].length);
+    let word = html[i].substr(0, randIndex) + html[i][randIndex].toUpperCase() + html[i].substr(randIndex + 1);
+    temp.push(word);
+  }
+  html = temp.join(' ');
+  let nonLetterAlpha = numbers.concat(symbols);
+  html = html.replace(/\s/g, function () {
+    return nonLetterAlpha[Math.floor(Math.random() * nonLetterAlpha.length)];
+  });
+  presentWords(html);
+  toGenerateButton();
+}
+
+function presentWords(str) {
+  document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + str +'</p>';
 }
