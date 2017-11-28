@@ -1,11 +1,14 @@
-// Significant contributors: Ryan Knighton and Ian Burgan
+// Significant contributors: Tyler Stohr and Ian Burgan
 // This file provides the functionality to hover over a company's icon and see their password requirements.
+// It also shows the user when a websites criteria has been met
 
 $(document).ready(function(){
 $('[data-toggle="tooltip"]').tooltip();
 createCommonCriteria();
 
+// shows requirements when hovering over website icon
 function createCommonCriteria(){
+	// Parallel arrays for websites and their reqs
 	var websites = ["instagram", "amazon", "dropbox", "linkedin", "google",
 	"github" ,"facebook-official", "snapchat-square", "skype", "youtube",
 	"twitter", "paypal"];
@@ -38,7 +41,7 @@ $("#input").on("change keyup paste", function() {
 		checkPassRequirements();
 });
 
-// Checks to see which company's the current password will pass
+// checks password and lights up icons for websites where criteria is met
 function checkPassRequirements() {
 	$( ".fa" ).removeClass( "passes" );
 	var upperCase = new RegExp('[A-Z]');
@@ -46,8 +49,8 @@ function checkPassRequirements() {
 	var numbers = new RegExp('[0-9]');
 	var symbols = new RegExp(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/);
 	var pw = $('#input').val();
-	
-	// Check against each company's password requirements
+
+	// add websites if requirements are met
 	if(pw != "" && !hasWhiteSpace(pw)){
 	  if(pw.length >= 6){
 	    $('.fa-instagram').addClass('passes');
