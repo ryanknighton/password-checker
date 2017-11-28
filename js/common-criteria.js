@@ -1,3 +1,6 @@
+// Significant contributors: Ryan Knighton and Ian Burgan
+// This file provides the functionality to hover over a company's icon and see their password requirements.
+
 $(document).ready(function(){
 $('[data-toggle="tooltip"]').tooltip();
 createCommonCriteria();
@@ -19,6 +22,7 @@ function createCommonCriteria(){
  	"Twitter passwords must be longer than 5 characters.",
  	"Paypal passwords must be between 7 and 32 characters with lower/uppercase letters and numbers or special characters."];
 
+	// Add the above strings of password requirements to each company image
 	var list = $('<ul class="criteria-list">');
 	for(var i=0;i<websites.length;i++){
 		list.append('<li data-toggle="tooltip" title="'+
@@ -29,10 +33,12 @@ function createCommonCriteria(){
 	$('#password-criteria').html(list);
 }
 
+// Update each image as the user enters in their password
 $("#input").on("change keyup paste", function() {
 		checkPassRequirements();
 });
 
+// Checks to see which company's the current password will pass
 function checkPassRequirements() {
 	$( ".fa" ).removeClass( "passes" );
 	var upperCase = new RegExp('[A-Z]');
@@ -40,6 +46,8 @@ function checkPassRequirements() {
 	var numbers = new RegExp('[0-9]');
 	var symbols = new RegExp(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/);
 	var pw = $('#input').val();
+	
+	// Check against each company's password requirements
 	if(pw != "" && !hasWhiteSpace(pw)){
 	  if(pw.length >= 6){
 	    $('.fa-instagram').addClass('passes');
@@ -70,6 +78,7 @@ function checkPassRequirements() {
 	}
 }
 
+// Check to see if white space is present in a password
 function hasWhiteSpace(s) {
   return s.indexOf(' ') >= 0;
 }
