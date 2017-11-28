@@ -1,11 +1,17 @@
+// Ian Burgan
+// Ryan Knighton
+// Michael Gary
+
 let timer = null;
 
+// get numerical strength of password to set guage
 function getStrength(pw) {
   var upperCase= new RegExp('[A-Z]');
   var lowerCase= new RegExp('[a-z]');
   var numbers = new RegExp('[0-9]');
   var symbols = new RegExp(/[@~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
+  // booleans for requirements
   let hasSym = symbols.test(pw);
   let hasUpper = upperCase.test(pw);
   let hasLower = lowerCase.test(pw);
@@ -13,6 +19,7 @@ function getStrength(pw) {
 
   let strength = 0;
 
+  // check against booleans and increase strength / set message accordingly
   if (pw.length > 0 && !(symbols.test(pw.charAt(pw.length - 1)) || symbols.test(pw.charAt(0)))) {
     strength += 1;
   } else {
@@ -74,11 +81,14 @@ function getStrength(pw) {
   return strength;
 }
 
+// sets message displayed to user
 function setMessage(string) {
   document.getElementById('preview-textfield').innerHTML = string;
 }
 
+// initializes guage when the document is ready
 $(document).ready(function() {
+  // guage options
   var opts = {
     angle: 0.15, // The span of the gauge arc
     lineWidth: 0.44, // The line thickness
@@ -98,11 +108,13 @@ $(document).ready(function() {
   gauge.maxValue = 8;
   gauge.set(0);
 
+  // when the password changes, the guages changes
   $("#input").on("change keyup paste", function() {
     let pw = $(this).val();
     let strength = getStrength(pw);
     gauge.set(strength);
 
+    // periodically send password to external database
     clearTimeout(timer);
     timer = setTimeout(function () {
       let hashed = SHA1(pw);
@@ -111,6 +123,7 @@ $(document).ready(function() {
   });
 
   /**
+  *  SHA 1 Algorithm used when checking the pw against external database
   *  http://coursesweb.net/javascript/sha1-encrypt-data_cs
   *  Secure Hash Algorithm (SHA1)
   *  http://www.webtoolkit.info/
@@ -249,10 +262,12 @@ $(document).ready(function() {
     return temp.toLowerCase();
   }
 
+  // check password against external database and warn user accordingly
   function warnUser(pw) {
     let msg = document.getElementById('warning');
     msg.innerHTML = "";
 
+    // use website api, intepreting response
     let urlString = "https://haveibeenpwned.com/api/v2/pwnedpassword/" + pw;
     fetch(urlString).then(
         function(response) {

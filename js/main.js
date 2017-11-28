@@ -1,3 +1,6 @@
+// Ian Burgan
+// Scott Hicks
+
 const alphabetLower = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const alphabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const numbers = '1234567890'.split('');
@@ -21,6 +24,7 @@ const words = [
 ];
 var wordString = "";
 
+// show password functionality
 $(document).ready(function () {
   $("#show").click(function(event) {
     // Removes focus of the button.
@@ -36,6 +40,7 @@ $(document).ready(function () {
   });
 });
 
+// populates select box where user selects length of password and random word
 function populateSelects() {
   let select = document.getElementById('length');
 
@@ -71,6 +76,7 @@ function populateSelects() {
   }
 }
 
+// generates a password based on state of check boxes and select box
 function generate() {
   let validSet = new Array();
   let pass = new Array();
@@ -81,6 +87,7 @@ function generate() {
   fltrAlphabetUpper = alphabetUpper.filter(x => !excluded.has(x));
   fltrAlphabetLower = alphabetLower.filter(x => !excluded.has(x));
 
+  // at a minimum, include all things that have their box checked
   if (includeNum()) {
     pass.push(fltrNumbers[Math.floor(Math.random()*fltrNumbers.length)])
     validSet = validSet.concat(fltrNumbers);
@@ -101,6 +108,7 @@ function generate() {
     validSet = validSet.concat(fltrAlphabetLower);
   }
 
+  // fill out rest of pass after meeting min requirements
   let length = getLength();
   for (let i = pass.length; i < length; i++) {
     let item = validSet[Math.floor(Math.random()*validSet.length)];
@@ -108,10 +116,12 @@ function generate() {
     pass.push(item);
   }
 
+  // shuffle password so that symbols are more evenly distributed
   shuffle(pass);
   displayPass(pass.join(''));
 }
 
+// get values of check boxes for pw generation
 function includeNum() {
   return document.getElementById('numbers').checked;
 }
@@ -136,7 +146,9 @@ function excludedChars() {
 function getLength() {
   return document.getElementById('length').value;
 }
+// get values of check boxes for pw generation end
 
+// display the password to the user
 function displayPass(pass) {
   let dispBox = document.getElementById('output');
   dispBox.value = pass;
@@ -158,36 +170,14 @@ function shuffle(array) {
   return array;
 }
 
-function includeNum() {
-  return document.getElementById('numbers').checked;
-}
-
-function includeSym() {
-  return document.getElementById('symbols').checked;
-}
-
-function includeUpper() {
-  return document.getElementById('uppers').checked;
-}
-
-function includeLower() {
-  return document.getElementById('lowers').checked;
-}
-
-function getLength() {
-  return document.getElementById('length').value;
-}
-
-function displayPass(pass) {
-  let dispBox = document.getElementById('output');
-  dispBox.value = pass;
-}
-
+// allow a user to generate a password using random words
 function randomWord() {
+  // specified acronym
   let acronym = document.getElementById('acronym').value;
   let newHTML = '';
 
   if (acronym) {
+    // select words based on letters in acronym
     for (let i = 0; i < acronym.length; i++) {
       let letter = acronym[i];
       newHTML += selectWord(letter) + ' ';
@@ -195,6 +185,7 @@ function randomWord() {
 
     presentWords(newHTML);
   } else {
+    // select correct number of words when no acronym specified
     var num = document.getElementById('randNum').value;
     var array = [];
 
@@ -206,30 +197,37 @@ function randomWord() {
       }
     }
 
+    // add words and surrounding html to document for user to see
     presentWords(newHTML);
   }
 
+  // set global var to contain the words
   wordString = newHTML;
+  // change button text and functionality
   toSecureButton();
 }
 
+// randomly select a word that starts with a letter
 function selectWord(letter) {
   let filtered = words.filter(x => x[0] === letter);
   return filtered[Math.floor(Math.random() * filtered.length)];
 }
 
+// change button text and functionality to making words into a secure pw
 function toSecureButton() {
   let button = document.getElementById('randWord');
   button.innerHTML = "Make Secure";
   button.onclick = makeSecure;
 }
 
+// change button text and functionality back to picking random words
 function toGenerateButton() {
   let button = document.getElementById('randWord');
   button.innerHTML = "Generate Another";
   button.onclick = randomWord;
 }
 
+// add symbols, capital letters etc. to generated words
 function makeSecure() {
   let html = wordString.split(' ');
   let temp = new Array();
@@ -243,10 +241,13 @@ function makeSecure() {
   html = html.replace(/\s/g, function () {
     return nonLetterAlpha[Math.floor(Math.random() * nonLetterAlpha.length)];
   });
+  // display new secure password
   presentWords(html);
+  // change button functionality
   toGenerateButton();
 }
 
+// adds words and surrounding html to document
 function presentWords(str) {
   document.getElementById('randomwords').innerHTML = '<p class="alert alert-success"><strong>Generated Words - </strong>' + str +'</p>';
 }

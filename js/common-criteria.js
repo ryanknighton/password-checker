@@ -1,8 +1,14 @@
+// Tyler Stohr
+// Scott Hicks
+// Checks password against requirements and lists requirements per site
+
 $(document).ready(function(){
 $('[data-toggle="tooltip"]').tooltip();
 createCommonCriteria();
 
+// shows requirements when hovering over website icon
 function createCommonCriteria(){
+	// Parallel arrays for websites and their reqs
 	var websites = ["instagram", "amazon", "dropbox", "linkedin", "google",
 	"github" ,"facebook-official", "snapchat-square", "skype", "youtube",
 	"twitter", "paypal"];
@@ -19,6 +25,7 @@ function createCommonCriteria(){
  	"Twitter passwords must be longer than 5 characters.",
  	"Paypal passwords must be between 7 and 32 characters with lower/uppercase letters and numbers or special characters."];
 
+	// add reqs as tooltips to all icons
 	var list = $('<ul class="criteria-list">');
 	for(var i=0;i<websites.length;i++){
 		list.append('<li data-toggle="tooltip" title="'+
@@ -33,6 +40,7 @@ $("#input").on("change keyup paste", function() {
 		checkPassRequirements();
 });
 
+// checks password and lights up icons for websites where criteria is met
 function checkPassRequirements() {
 	$( ".fa" ).removeClass( "passes" );
 	var upperCase = new RegExp('[A-Z]');
@@ -40,6 +48,8 @@ function checkPassRequirements() {
 	var numbers = new RegExp('[0-9]');
 	var symbols = new RegExp(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/);
 	var pw = $('#input').val();
+
+	// add websites if requirements are met
 	if(pw != "" && !hasWhiteSpace(pw)){
 	  if(pw.length >= 6){
 	    $('.fa-instagram').addClass('passes');
@@ -70,6 +80,7 @@ function checkPassRequirements() {
 	}
 }
 
+// return true if whitespace is found
 function hasWhiteSpace(s) {
   return s.indexOf(' ') >= 0;
 }
