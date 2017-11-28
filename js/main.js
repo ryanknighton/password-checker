@@ -1,3 +1,5 @@
+// Significant contributors: Ryan Knighton, Ian Burgan, Scott Hicks
+
 const alphabetLower = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const alphabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const numbers = '1234567890'.split('');
@@ -36,6 +38,7 @@ $(document).ready(function () {
   });
 });
 
+// Add options for drop down menus
 function populateSelects() {
   let select = document.getElementById('length');
 
@@ -71,6 +74,7 @@ function populateSelects() {
   }
 }
 
+// Generates a new password for the user
 function generate() {
   let validSet = new Array();
   let pass = new Array();
@@ -111,6 +115,8 @@ function generate() {
   shuffle(pass);
   displayPass(pass.join(''));
 }
+
+// Functions to check which checkboxes are marked
 
 function includeNum() {
   return document.getElementById('numbers').checked;
@@ -156,31 +162,6 @@ function shuffle(array) {
   }
 
   return array;
-}
-
-function includeNum() {
-  return document.getElementById('numbers').checked;
-}
-
-function includeSym() {
-  return document.getElementById('symbols').checked;
-}
-
-function includeUpper() {
-  return document.getElementById('uppers').checked;
-}
-
-function includeLower() {
-  return document.getElementById('lowers').checked;
-}
-
-function getLength() {
-  return document.getElementById('length').value;
-}
-
-function displayPass(pass) {
-  let dispBox = document.getElementById('output');
-  dispBox.value = pass;
 }
 
 function randomWord() {
